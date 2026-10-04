@@ -51,6 +51,13 @@ func _die() -> void:
 	animated_sprite_2d.play("death")
 	await animated_sprite_2d.animation_finished
 	queue_free()
+	await get_tree().process_frame
+	var remaining_enemies = get_tree().get_nodes_in_group("enemies")
+	if remaining_enemies.size() <= 1:
+		_trigger_win()
+
+func _trigger_win() -> void:
+	print("you win")
 
 
 func _perform_dash(direction: Vector2) -> void:

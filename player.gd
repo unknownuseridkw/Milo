@@ -9,6 +9,18 @@ extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
 var isAttacking: bool = false
+var max_health: int = 100
+var current_heath: int = max_health
+
+func take_damage(amount: int) -> void:
+	current_heath -= amount
+	
+	if current_heath <= 0:
+		_die()
+
+func _die() -> void:
+	get_tree().reload_current_scene()
+	
 
 
 
