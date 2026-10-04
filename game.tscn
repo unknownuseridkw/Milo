@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://mjiwsqv3gjl5"]
+
+[ext_resource type="PackedScene" uid="uid://ye56svm1e2dt" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://c5uuqxbs3aasf" path="res://enemy.tscn" id="2_e2o6t"]
+
+[node name="Game" type="Node2D" unique_id=413135866]
+
+[node name="player" parent="." unique_id=1925816753 instance=ExtResource("1_80nbo")]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player" unique_id=117869455]
+remote_path = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=1225938771]
+zoom = Vector2(2, 2)
+
+[node name="enemy" parent="." unique_id=123225505 instance=ExtResource("2_e2o6t")]
+position = Vector2(270, 140)
