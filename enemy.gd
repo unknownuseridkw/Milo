@@ -49,6 +49,7 @@ func _die() -> void:
 	is_dead = true
 	velocity = Vector2.ZERO
 	animated_sprite_2d.play("death")
+	GameManager.enemy_defeated()
 	await animated_sprite_2d.animation_finished
 	queue_free()
 	await get_tree().process_frame

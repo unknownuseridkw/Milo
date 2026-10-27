@@ -20,6 +20,7 @@ func take_damage(amount: int) -> void:
 
 func _die() -> void:
 	get_tree().reload_current_scene()
+	GameManager.trigger_lose()
 	
 
 
