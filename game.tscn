@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ye56svm1e2dt" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://c5uuqxbs3aasf" path="res://enemy.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://cl56o85vtqlqw" path="res://over_ui.gd" id="3_feb5d"]
 
 [node name="Game" type="Node2D" unique_id=413135866]
 
@@ -15,3 +16,42 @@ zoom = Vector2(2, 2)
 
 [node name="enemy" parent="." unique_id=123225505 instance=ExtResource("2_e2o6t")]
 position = Vector2(270, 140)
+
+[node name="OverUI" type="CanvasLayer" parent="." unique_id=865448960]
+script = ExtResource("3_feb5d")
+
+[node name="PanelContainer" type="Control" parent="OverUI" unique_id=55485813]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="OverUI/PanelContainer" unique_id=317698159]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -4.925
+anchor_top = -3.6000001
+anchor_right = 4.65
+anchor_bottom = 3.4750001
+color = Color(0, 0, 0, 0.5176471)
+
+[node name="Box" type="VBoxContainer" parent="OverUI/PanelContainer" unique_id=538649766]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.003
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -95.12
+offset_top = -28.0
+offset_right = 74.0
+offset_bottom = -6.0
+
+[node name="status" type="Label" parent="OverUI/PanelContainer/Box" unique_id=269385636]
+layout_mode = 2
+
+[node name="objective" type="Label" parent="OverUI/PanelContainer/Box" unique_id=373597804]
+layout_mode = 2
+text = "Objective: Defeat all slimes"
+
+[node name="replay" type="Button" parent="OverUI/PanelContainer/Box" unique_id=1173382883]
+layout_mode = 2
