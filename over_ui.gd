@@ -1,12 +1,14 @@
 extends CanvasLayer
 
-@onready var status_label: Label = $PanelContainer/Box/status
-@onready var objective_label: Label = $PanelContainer/Box/objective
-@onready var replay_button: Button = $PanelContainer/Box/replay
+@onready var status_label: Label = $PanelContainer/status
+@onready var objective_label: Label = $PanelContainer/objective
+@onready var replay_button: Button = $PanelContainer/replay
 @onready var panel_container: Control = $PanelContainer
 
 func _ready() -> void:
-	panel_container.hide()
+	status_label.hide()
+	replay_button.hide()
+	
 	GameManager.connect("game_over", Callable(self, "_on_game_over"))
 	replay_button.connect("pressed", Callable(self, "_on_replay_pressed"))
 	update_objective()
@@ -19,7 +21,8 @@ func update_objective() -> void:
 	objective_label.text = "Enemies Left: " + str(remaining)
 
 func _on_game_over(won: bool) -> void:
-	panel_container.show()
+	status_label.show()
+	replay_button.show()
 	if won:
 		status_label.text = "You Win!"
 	else:
