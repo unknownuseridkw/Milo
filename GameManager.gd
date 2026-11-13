@@ -13,7 +13,7 @@ func reset_game() -> void:
 
 func enemy_defeated() -> void:
 	enemies_defeated += 1
-	if enemies_defeated >= total_enemies:
+	if total_enemies > 0 and enemies_defeated >= total_enemies:
 		trigger_win()
 
 func trigger_win() -> void:

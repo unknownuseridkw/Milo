@@ -12,6 +12,9 @@ var can_dash = true
 var is_dashing = false
 var is_dead = false
 
+func _ready() -> void:
+	GameManager.total_enemies += 1
+
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return

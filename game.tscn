@@ -2,7 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://ye56svm1e2dt" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://c5uuqxbs3aasf" path="res://enemy.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://donf40xs0uyon" path="res://replay.gd" id="2_fc0e3"]
 [ext_resource type="Script" uid="uid://cl56o85vtqlqw" path="res://over_ui.gd" id="3_feb5d"]
+
+[sub_resource type="Gradient" id="Gradient_feb5d"]
+colors = PackedColorArray(0.4433187, 0.17548865, 0.10311485, 1, 1.1759251, 0.46420535, 0.46420535, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wmhdt"]
+gradient = SubResource("Gradient_feb5d")
+width = 267
+height = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_g88ev"]
+font_size = 26
 
 [sub_resource type="LabelSettings" id="LabelSettings_7jktm"]
 font_size = 32
@@ -10,9 +22,6 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_ryrav"]
 font_size = 32
 outline_size = 2
-
-[sub_resource type="LabelSettings" id="LabelSettings_g88ev"]
-font_size = 26
 
 [node name="Game" type="Node2D" unique_id=413135866]
 
@@ -28,6 +37,29 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="replay" type="Button" parent="OverUI/PanelContainer" unique_id=1173382883]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 0
+offset_left = -139.0
+offset_top = 10.0
+offset_right = 138.5
+offset_bottom = 54.0
+mouse_filter = 1
+mouse_behavior_recursive = 2
+icon = SubResource("GradientTexture2D_wmhdt")
+script = ExtResource("2_fc0e3")
+
+[node name="Label" type="Label" parent="OverUI/PanelContainer/replay" unique_id=1534968094]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 270.0
+offset_bottom = 41.0
+text = "Replay"
+label_settings = SubResource("LabelSettings_g88ev")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="status" type="Label" parent="OverUI/PanelContainer" unique_id=269385636]
 layout_mode = 0
@@ -48,26 +80,9 @@ offset_bottom = -268.0
 text = "Objective: Defeat all slimes"
 label_settings = SubResource("LabelSettings_ryrav")
 
-[node name="replay" type="Button" parent="OverUI/PanelContainer" unique_id=1173382883]
-layout_mode = 0
-offset_left = -139.0
-offset_top = 10.0
-offset_right = 138.5
-offset_bottom = 54.0
-
-[node name="Label" type="Label" parent="OverUI/PanelContainer/replay" unique_id=1534968094]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 3.0
-offset_right = 270.0
-offset_bottom = 41.0
-text = "Replay"
-label_settings = SubResource("LabelSettings_g88ev")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ColorRect" type="ColorRect" parent="OverUI/PanelContainer" unique_id=317698159]
 layout_mode = 0
+mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="player" parent="." unique_id=1925816753 instance=ExtResource("1_80nbo")]
@@ -81,3 +96,8 @@ position_smoothing_enabled = true
 
 [node name="enemy" parent="." unique_id=123225505 instance=ExtResource("2_e2o6t")]
 position = Vector2(270, 140)
+
+[node name="enemy2" parent="." unique_id=947303955 instance=ExtResource("2_e2o6t")]
+position = Vector2(277, -83)
+
+[connection signal="pressed" from="OverUI/PanelContainer/replay" to="OverUI" method="_on_replay_pressed"]

@@ -10,7 +10,6 @@ func _ready() -> void:
 	replay_button.hide()
 	
 	GameManager.connect("game_over", Callable(self, "_on_game_over"))
-	replay_button.connect("pressed", Callable(self, "_on_replay_pressed"))
 	update_objective()
 
 func _process(delta: float) -> void:
@@ -27,7 +26,3 @@ func _on_game_over(won: bool) -> void:
 		status_label.text = "You Win!"
 	else:
 		status_label.text = "Game Over"
-
-func _on_replay_pressed() -> void:
-	get_tree().paused = false
-	get_tree().reload_current_scene()

@@ -101,7 +101,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"death",
-"speed": 4.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -146,6 +146,7 @@ script = ExtResource("1_4gyqm")
 sprite_frames = SubResource("SpriteFrames_igrfd")
 animation = &"death"
 autoplay = "idle"
+frame_progress = 0.32193473
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1917588985]
 scale = Vector2(-1.592846, -0.9734384)
