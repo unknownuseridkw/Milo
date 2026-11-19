@@ -14,37 +14,33 @@ var current_heath: int = max_health
 
 func take_damage(amount: int) -> void:
 	current_heath -= amount
-	
+	print(current_heath)
+
 	if current_heath <= 0:
 		_die()
 
 func _die() -> void:
-	get_tree().reload_current_scene()
 	GameManager.trigger_lose()
-	
-
-
 
 func _physics_process(_delta):
 	process_movement()
 	attack()
 	animation()
 
-
 func process_movement():
-	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = direction * speed
-	move_and_slide()
+	if GameManager.gameStarted:
+		direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		velocity = direction * speed
+		move_and_slide()
 
 func attack():
-	if Input.is_action_just_pressed("ui_attack") and !isAttacking:
+	if Input.is_action_just_pressed("ui_attack") and !isAttacking and GameManager.gameStarted:
 		isAttacking = true
 		hitbox.monitoring = true 
 		anim.play("attack")
 		await anim.animation_finished
 		hitbox.monitoring = false
 		isAttacking = false
-
 
 func animation():
 	if direction.x < 0:
@@ -61,7 +57,6 @@ func animation():
 			anim.play("walk")
 		else:
 			anim.play("idle")
-
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if isAttacking and body.has_method("take_damage"):

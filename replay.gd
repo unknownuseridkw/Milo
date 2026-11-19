@@ -1,7 +1,5 @@
 extends Button
-
-
-	
+@onready var Player: CharacterBody2D = $"../../../player"
 
 func _pressed() -> void:
 	print("Button was clicked!")

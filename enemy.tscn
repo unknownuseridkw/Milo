@@ -160,4 +160,14 @@ scale = Vector2(1.592846, 0.9734384)
 position = Vector2(-5.9604645e-08, 0)
 shape = SubResource("CircleShape2D_d1wkt")
 
+[node name="Hitbox" type="Area2D" parent="." unique_id=1110904197]
+rotation = 3.1415927
+scale = Vector2(0.34206247, 0.28013247)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1242345203]
+position = Vector2(-5.9604645e-08, 0)
+shape = SubResource("CircleShape2D_d1wkt")
+
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_sight_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var hitbox: Area2D = $Hitbox  
 const MOVE_SPEED = 40.0
 const DASH_SPEED = 180.0
 const DASH_COOLDOWN = 2.0 
@@ -11,8 +11,10 @@ var target = null
 var can_dash = true
 var is_dashing = false
 var is_dead = false
+var damage = 20
 
 func _ready() -> void:
+	hitbox.monitoring = false  
 	GameManager.total_enemies += 1
 
 func _physics_process(delta: float) -> void:
@@ -35,7 +37,6 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play("idle")
 
 	move_and_slide()
-
 
 func take_damage(damage: int) -> void:
 	if is_dead:
@@ -63,17 +64,17 @@ func _die() -> void:
 func _trigger_win() -> void:
 	print("you win")
 
-
 func _perform_dash(direction: Vector2) -> void:
 	can_dash = false
 	is_dashing = true
 	
 	animated_sprite_2d.play("attack")
-	
 	velocity = direction * DASH_SPEED
-
+	
+	hitbox.monitoring = true  
 	await get_tree().create_timer(0.4).timeout
 	
+	hitbox.monitoring = false 
 	is_dashing = false
 
 	await get_tree().create_timer(DASH_COOLDOWN).timeout
@@ -82,3 +83,7 @@ func _perform_dash(direction: Vector2) -> void:
 func _on_sight_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		target = body
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if is_dashing and body.has_method("take_damage"):
+		body.take_damage(damage)

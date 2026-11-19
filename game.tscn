@@ -37,6 +37,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="replay" type="Button" parent="OverUI/PanelContainer" unique_id=1173382883]
 custom_minimum_size = Vector2(5, 0)
@@ -45,10 +46,9 @@ offset_left = -139.0
 offset_top = 10.0
 offset_right = 138.5
 offset_bottom = 54.0
-mouse_filter = 1
-mouse_behavior_recursive = 2
 icon = SubResource("GradientTexture2D_wmhdt")
 script = ExtResource("2_fc0e3")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="OverUI/PanelContainer/replay" unique_id=1534968094]
 layout_mode = 0
@@ -60,6 +60,7 @@ text = "Replay"
 label_settings = SubResource("LabelSettings_g88ev")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="status" type="Label" parent="OverUI/PanelContainer" unique_id=269385636]
 layout_mode = 0
@@ -70,6 +71,7 @@ offset_bottom = -2.0
 text = "ffffffffffffffffffffffffffff"
 label_settings = SubResource("LabelSettings_7jktm")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="objective" type="Label" parent="OverUI/PanelContainer" unique_id=373597804]
 layout_mode = 0
@@ -79,6 +81,7 @@ offset_right = -342.0
 offset_bottom = -268.0
 text = "Objective: Defeat all slimes"
 label_settings = SubResource("LabelSettings_ryrav")
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="OverUI/PanelContainer" unique_id=317698159]
 layout_mode = 0
@@ -95,9 +98,13 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="enemy" parent="." unique_id=123225505 instance=ExtResource("2_e2o6t")]
-position = Vector2(270, 140)
+position = Vector2(1, 163)
+
+[node name="enemy3" parent="." unique_id=679109660 instance=ExtResource("2_e2o6t")]
+position = Vector2(-220, -113)
 
 [node name="enemy2" parent="." unique_id=947303955 instance=ExtResource("2_e2o6t")]
-position = Vector2(277, -83)
+position = Vector2(292, -111)
 
+[connection signal="button_down" from="OverUI/PanelContainer/replay" to="OverUI/PanelContainer/replay" method="_on_button_down"]
 [connection signal="pressed" from="OverUI/PanelContainer/replay" to="OverUI" method="_on_replay_pressed"]
