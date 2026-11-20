@@ -6,16 +6,27 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $hitbox
 @export var damage: int = 20 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var direction: Vector2 = Vector2.ZERO
 var isAttacking: bool = false
 var max_health: int = 100
 var current_heath: int = max_health
 
+func _ready() -> void:
+	%HealthBar.max_value = max_health
+	health_bar()
+	
+
+func health_bar() -> void:
+	%HealthBar.value = current_heath
 func take_damage(amount: int) -> void:
 	current_heath -= amount
 	print(current_heath)
-
+	health_bar()
+	animated_sprite_2d.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	animated_sprite_2d.modulate = Color.WHITE
 	if current_heath <= 0:
 		_die()
 
