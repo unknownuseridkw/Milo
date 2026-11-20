@@ -117,5 +117,14 @@ position = Vector2(-220, -113)
 [node name="enemy2" parent="." unique_id=947303955 instance=ExtResource("2_e2o6t")]
 position = Vector2(292, -111)
 
+[node name="enemy4" parent="." unique_id=222852940 instance=ExtResource("2_e2o6t")]
+position = Vector2(-126, 20)
+
+[node name="enemy5" parent="." unique_id=1552084288 instance=ExtResource("2_e2o6t")]
+position = Vector2(41, -173)
+
+[node name="enemy6" parent="." unique_id=786366001 instance=ExtResource("2_e2o6t")]
+position = Vector2(255, 84)
+
 [connection signal="button_down" from="OverUI/PanelContainer/replay" to="OverUI/PanelContainer/replay" method="_on_button_down"]
 [connection signal="pressed" from="OverUI/PanelContainer/replay" to="OverUI" method="_on_replay_pressed"]
