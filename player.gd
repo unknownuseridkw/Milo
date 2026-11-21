@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var hitbox: Area2D = $hitbox
 @export var damage: int = 20 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var laser_shoot: AudioStreamPlayer2D = $LaserShoot
 
 var direction: Vector2 = Vector2.ZERO
 var isAttacking: bool = false
@@ -72,3 +73,4 @@ func animation():
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if isAttacking and body.has_method("take_damage"):
 		body.take_damage(damage)
+		laser_shoot.play()
